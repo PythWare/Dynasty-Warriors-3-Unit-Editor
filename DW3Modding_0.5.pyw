@@ -246,7 +246,7 @@ class DW3Manager: # mod manager for unit mods
                 with open(file1, "r+b") as f1: # open iso file for reading and writing
                     with open(file_path, "rb") as f2: # open the mod file for reading
                         f1.seek(offset) # seek the offset in the iso file
-                        sdata = f2.read(19690) # read the mod file's data
+                        sdata = f2.read(6060) # read the mod file's data
                         f1.write(sdata) # write the mod file's data to the iso file
                 self.mod_status.config(text=f"Mod file '{os.path.basename(file_path)}' enabled successfully.", fg="green")
         except Exception as e:
@@ -266,7 +266,7 @@ class DW3Manager: # mod manager for unit mods
                 with open(file1, "r+b") as f1: # open the iso file for reading and writing
                     with open(file_path, "rb") as f2: # open the mod disabling file
                         f1.seek(offset) # seek offset for unit data in the iso file
-                        sdata = f2.read(19690) # read the data for disabling unit mods
+                        sdata = f2.read(6060) # read the data for disabling unit mods
                         f1.write(sdata) # write the data
                 self.mod_status.config(text=f"The mod that used the '{os.path.basename(file_path)}' template was disabled.", fg="green")
         except Exception as e:
