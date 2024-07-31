@@ -121,7 +121,7 @@ class UnitEditor(CheckIt):
         global getoffset
         sep = "." # to be used for correcting possible user filenames that have their own extension
         try:
-            usermodname = self.modname.get().split(sep, 1)[0] + dw3_ext # Create modname with the user entered name and stage extension based on the .ref file selected
+            usermodname = self.modname.get().split(sep, 1)[0] + dw3_ext # Create modname with the user entered name
             with open(self.unit_path, "rb") as r1:
                 data = r1.read()
                 offset = r1.tell()
@@ -134,7 +134,7 @@ class UnitEditor(CheckIt):
     def unit_reading(self):
         global getoffset
         aob_pattern = b'\x07\x06\x06\x05\x05\x04\x04\x03\x03\x02\x02\x02\x02\x01\x00\x00'
-        chunk_size = 4096  # Adjust chunk size as needed, depending on your system's memory and performance
+        chunk_size = 4096
         with open(file1, "rb") as f1:
             offset = 0
             found = False
