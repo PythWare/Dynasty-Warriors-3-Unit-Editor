@@ -23,8 +23,8 @@ def rem(files1, files2): # everytime the script is ran delete the old files to c
     if os.path.isfile(filepath2):
         os.remove(filepath2)
 class UnitEditor(CheckIt):
-    def __init__(self):
-        self.root = tk.Tk()
+    def __init__(self, root):
+        self.root = root
         self.root.title("Dynasty Warriors 3 Unit Editor")
         self.root.iconbitmap(os.path.join(icon_fold, "img2.ico"))
         self.root.minsize(800,800)
@@ -218,14 +218,11 @@ class UnitEditor(CheckIt):
                 self.weapon.set(unitweapon)
                 self.itemcount.set(unititemcount)
     def open_mod_manager(self):
-        self.root.destroy()
-        manager = DW3Manager()
+        manager = DW3Manager(self.root)
         
-    def run(self):
-        self.root.mainloop()
 class DW3Manager: # mod manager for unit mods
-    def __init__(self):
-        self.root = tk.Tk()
+    def __init__(self, root):
+        self.root = tk.Toplevel()
         self.root.title("DW3 Mod Manager")
         self.root.iconbitmap(os.path.join(icon_fold, "img1.ico"))
         self.root.minsize(400, 400)
@@ -274,12 +271,13 @@ class DW3Manager: # mod manager for unit mods
                 self.mod_status.config(text=f"The mod that used the '{os.path.basename(file_path)}' template was disabled.", fg="green")
         except Exception as e:
             self.mod_status.config(text=f"Error: {str(e)}", fg="red")
-    def run(self):
-        self.root.mainloop()
+def main():
+    root = tk.Tk()
+    dw3u = UnitEditor(root)
+    root.mainloop()
 if __name__ == "__main__":
     os.makedirs(backup, exist_ok = True)
     os.makedirs(data_storage, exist_ok = True)
     os.makedirs(icon_fold, exist_ok = True)
     rem(unit_file, unit_ref)
-    main_editor = UnitEditor()
-    main_editor.run()
+    main()
